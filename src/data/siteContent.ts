@@ -40,11 +40,12 @@ export const siteContent = {
   scenes: {
     hero: {
       eyebrow: "JaiMoney XL presents",
-      media: "/media/images/hero-poster.svg",
+      media: "/media/images/hero-poster.webp",
+      video: "/media/video/hero-loop.mp4",
     },
     manifesto: {
       eyebrow: "The manifesto",
-      media: "/media/images/track-bg-01.svg",
+      media: "/media/images/manifesto-01.webp",
     },
     album: {
       eyebrow: "The new project",
@@ -52,11 +53,11 @@ export const siteContent = {
     },
     tracks: {
       eyebrow: "Inside the album",
-      media: "/media/images/track-bg-02.svg",
+      media: "/media/images/track-bg-02.webp",
     },
     visuals: {
       eyebrow: "The visual world",
-      media: "/media/images/visual-01.svg",
+      media: "/media/images/visual-01-poster.webp",
     },
     merch: {
       eyebrow: "Wear the mindset",
@@ -64,15 +65,15 @@ export const siteContent = {
     },
     story: {
       eyebrow: "The artist",
-      media: "/media/images/story-portrait.svg",
+      media: "/media/images/story-portrait-01.webp",
     },
     join: {
       eyebrow: "Join the movement",
-      media: "/media/images/track-bg-03.svg",
+      media: "/media/images/manifesto-03.webp",
     },
     footer: {
       eyebrow: "JaiMoney XL",
-      media: "/media/images/hero-poster.svg",
+      media: "/media/images/hero-poster.webp",
     },
-  } satisfies Record<SceneKey, { eyebrow: string; media: string }>,
+  } satisfies Record<SceneKey, { eyebrow: string; media: string; video?: string }>,
 };

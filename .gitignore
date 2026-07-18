@@ -27,3 +27,7 @@ next-env.d.ts
 # system
 .DS_Store
 Thumbs.db
+
+# local source media masters (optimized selections are committed separately)
+/public/media/incoming/*
+!/public/media/incoming/.gitkeep
