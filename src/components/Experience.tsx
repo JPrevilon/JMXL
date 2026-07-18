@@ -16,6 +16,7 @@ import { EpkDrawer } from "./EpkDrawer";
 import { FixedMediaStage } from "./FixedMediaStage";
 import { GlobalNavigation } from "./GlobalNavigation";
 import { IntroLoader } from "./IntroLoader";
+import { MobileConversionBar } from "./MobileConversionBar";
 import { ScrollProgress } from "./ScrollProgress";
 import { SmoothScrollProvider } from "./SmoothScrollProvider";
 import { VideoModal } from "./VideoModal";
@@ -79,6 +80,7 @@ export function Experience() {
       </main>
 
       <AudioDock track={activeTrack} onClose={() => setActiveTrack(null)} />
+      <MobileConversionBar hidden={Boolean(activeTrack)} />
       <VideoModal visual={activeVisual} onClose={() => setActiveVisual(null)} />
       <EpkDrawer open={epkOpen} onClose={() => setEpkOpen(false)} />
     </SmoothScrollProvider>
