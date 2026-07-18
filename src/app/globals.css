@@ -197,7 +197,9 @@ button:disabled { cursor: not-allowed; opacity: .48; }
 .visual-card { position: relative; width: min(54vw, 760px); aspect-ratio: 16/10; flex: 0 0 auto; border: 1px solid var(--line); background: #111; overflow: hidden; text-align: left; padding: 2rem; cursor: pointer; isolation: isolate; }
 .visual-card::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 28%, rgba(5,5,5,.88)); z-index: -1; }
 .visual-card img { object-fit: cover; z-index: -2; filter: grayscale(1) contrast(1.05); transition: transform .7s ease, filter .7s ease; }
-.visual-card:hover img { transform: scale(1.06); filter: grayscale(.25); }
+.visual-card:hover img { transform: scale(1.045); }
+.visual-card__preview { position: absolute; z-index: -1; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: saturate(.62) contrast(1.05); animation: visual-preview-in .35s ease both; }
+@keyframes visual-preview-in { from { opacity: 0; } to { opacity: .82; } }
 .visual-card__index { position: absolute; top: 1.5rem; left: 1.5rem; color: var(--gold); font-size: .72rem; }
 .visual-card__meta { position: absolute; right: 1.5rem; top: 1.5rem; text-transform: uppercase; letter-spacing: .12em; font-size: .62rem; }
 .visual-card strong { position: absolute; left: 2rem; bottom: 2rem; max-width: 75%; font-family: var(--display); text-transform: uppercase; font-size: clamp(2rem, 4vw, 4.5rem); line-height: .9; }
@@ -208,8 +210,11 @@ button:disabled { cursor: not-allowed; opacity: .48; }
 .modal__panel { position: relative; width: min(92vw, 1100px); max-height: 90svh; overflow: auto; padding: 1.5rem; background: #0b0b0b; border: 1px solid var(--line); }
 .modal__media { position: relative; aspect-ratio: 16/9; margin-bottom: 2rem; background: #111; }
 .modal__media img, .modal__media video { object-fit: cover; width: 100%; height: 100%; }
+.modal__media video { object-fit: contain; background: #000; }
 .modal__close { position: absolute; z-index: 3; right: 1rem; top: 1rem; width: 44px; height: 44px; border: 1px solid var(--line); background: var(--black); font-size: 1.6rem; cursor: pointer; }
 .modal__panel h2, .epk-drawer h2 { font-family: var(--display); text-transform: uppercase; font-size: clamp(2.8rem, 6vw, 6rem); margin: 0; }
+.modal__meta { display: flex; justify-content: space-between; gap: 1rem; margin-bottom: .75rem; color: var(--gold); text-transform: uppercase; letter-spacing: .16em; font-size: .66rem; font-weight: 800; }
+.modal__caption { max-width: 52rem; color: var(--muted); line-height: 1.7; }
 
 .merch-scene { min-height: 130svh; padding: 10vh 0; background: linear-gradient(rgba(5,5,5,.68), rgba(5,5,5,.9)); }
 .product-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
@@ -301,6 +306,7 @@ button:disabled { cursor: not-allowed; opacity: .48; }
   .visuals-heading { width: min(calc(100% - 2rem), var(--max-width)); }
   .visuals-rail { width: 100%; overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-inline: contain; padding: 0 1rem 2rem; }
   .visual-card { width: 82vw; scroll-snap-align: center; }
+  .visual-card__preview { display: none; }
   .product-grid { grid-template-columns: 1fr; }
   .story-portrait { position: relative; top: 0; height: min(65vh, 680px); }
   .footer-bottom { flex-direction: column; align-items: center; }
