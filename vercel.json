@@ -1,4 +1,4 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "installCommand": "npm ci --registry=https://registry.npmjs.org --no-audit --no-fund"
+  "installCommand": "npx --yes pnpm@10.13.1 install --no-frozen-lockfile"
 }
