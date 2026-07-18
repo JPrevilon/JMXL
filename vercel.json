@@ -1,4 +1,5 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
+  "buildCommand": "node node_modules/next/dist/bin/next build",
   "installCommand": "npx --yes pnpm@10.13.1 --config.package-manager-strict=false install --no-frozen-lockfile"
 }
