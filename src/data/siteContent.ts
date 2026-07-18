@@ -16,6 +16,11 @@ export const siteContent = {
   genre: "Hip Hop",
   tagline: "The album. The mindset. The movement.",
   manifesto: ["Built by vision.", "Backed by work.", "Owned from the ground up."],
+  manifestoMedia: [
+    "/media/images/manifesto-01.webp",
+    "/media/images/manifesto-02.webp",
+    "/media/images/manifesto-03.webp",
+  ],
   albumSummary:
     "A statement on independence, ambition, and building something you can call your own. Young Black Entrepreneur turns the work behind the vision into a soundtrack.",
   story:

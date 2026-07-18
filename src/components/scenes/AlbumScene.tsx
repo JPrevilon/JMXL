@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useRef } from "react";
-import { gsap } from "@/lib/gsap";
+import { gsap, ScrollTrigger } from "@/lib/gsap";
 import { siteContent } from "@/data/siteContent";
 
 export function AlbumScene() {
@@ -12,29 +12,65 @@ export function AlbumScene() {
     const section = root.current;
     if (!section || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const context = gsap.context(() => {
-      gsap.fromTo(
-        ".album-art",
-        { rotateY: -16, rotateZ: -4, scale: 0.78 },
-        {
-          rotateY: 0,
-          rotateZ: 0,
+      const media = gsap.matchMedia();
+
+      media.add("(min-width: 901px)", () => {
+        const artWrap = section.querySelector<HTMLElement>(".album-art-wrap");
+        if (!artWrap) return;
+        ScrollTrigger.create({
+          trigger: section,
+          start: "top top",
+          end: "bottom bottom",
+          pin: artWrap,
+          pinSpacing: false,
+        });
+        gsap.fromTo(".album-art", { rotateY: -13, rotateX: 5, rotateZ: -2, scale: 0.84 }, {
+          rotateY: 4,
+          rotateX: -2,
+          rotateZ: 0.8,
           scale: 1,
           ease: "none",
-          scrollTrigger: { trigger: section, start: "top bottom", end: "center center", scrub: 1 },
-        },
-      );
-      gsap.from(".album-copy > *", {
-        y: 48,
-        opacity: 0,
-        stagger: 0.08,
-        scrollTrigger: { trigger: section, start: "top 58%", toggleActions: "play none none reverse" },
+          scrollTrigger: { trigger: section, start: "top 80%", end: "75% 35%", scrub: 1 },
+        });
       });
+
+      media.add("(max-width: 900px)", () => {
+        gsap.from(".album-art", {
+          y: 36,
+          rotateZ: -1.5,
+          autoAlpha: 0,
+          duration: 0.75,
+          scrollTrigger: { trigger: ".album-art", start: "top 88%", toggleActions: "play none none reverse" },
+        });
+      });
+
+      gsap.from(".album-copy > :not(.album-meta)", {
+        y: 34,
+        autoAlpha: 0,
+        stagger: 0.09,
+        duration: 0.7,
+        scrollTrigger: { trigger: ".album-copy", start: "top 68%", toggleActions: "play none none reverse" },
+      });
+      gsap.from(".album-meta > div", {
+        y: 22,
+        autoAlpha: 0,
+        stagger: 0.08,
+        duration: 0.55,
+        scrollTrigger: { trigger: ".album-meta", start: "top 78%", toggleActions: "play none none reverse" },
+      });
+      gsap.fromTo(".album-scroll-accent", { scaleY: 0 }, {
+        scaleY: 1,
+        ease: "none",
+        scrollTrigger: { trigger: section, start: "top 75%", end: "bottom 25%", scrub: true },
+      });
+      return () => media.revert();
     }, section);
     return () => context.revert();
   }, []);
 
   return (
     <section ref={root} id="album" data-scene="album" className="scene album-scene">
+      <span className="album-scroll-accent" aria-hidden="true" />
       <div className="scene__inner split-layout">
         <div className="album-art-wrap">
           <div className="album-art">
