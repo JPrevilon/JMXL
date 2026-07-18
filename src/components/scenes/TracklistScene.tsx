@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { tracks, type Track } from "@/data/tracks";
 import { siteContent } from "@/data/siteContent";
 
@@ -12,13 +13,18 @@ export function TracklistScene({
 }) {
   return (
     <section id="tracks" data-scene="tracks" className="scene tracklist-scene">
+      {activeTrack && (
+        <div className="tracklist-active-media" key={activeTrack.number} aria-hidden="true">
+          <Image src={activeTrack.background} alt="" fill sizes="100vw" />
+        </div>
+      )}
       <div className="scene__inner">
         <div className="section-heading">
           <div>
             <p className="eyebrow">{siteContent.scenes.tracks.eyebrow}</p>
             <h2>Tracklist</h2>
           </div>
-          <p>The sequence is under wraps. Approved titles and short previews will appear here at release.</p>
+          <p>Eleven records. Select a title to open its approved 25-second preview.</p>
         </div>
         <div className="tracklist" role="list">
           {tracks.map((track) => {
@@ -33,7 +39,7 @@ export function TracklistScene({
               >
                 <span>{track.number}</span>
                 <strong>{track.title}</strong>
-                <span>{track.feature ?? "JaiMoney XL"}</span>
+                <span className="track-row__credits">{track.feature ? `Feat. ${track.feature}` : "JaiMoney XL"}<small>Prod. {track.producer}</small></span>
                 <span>{track.duration}</span>
                 <span className="track-row__play">{active ? "SELECTED" : track.previewSrc ? "PLAY" : "SOON"}</span>
               </button>

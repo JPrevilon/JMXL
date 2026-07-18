@@ -66,7 +66,7 @@ export function Experience() {
       <ScrollProgress />
       <CustomCursor />
 
-      <main ref={sceneRoot} className="site-shell" aria-hidden={!entered} inert={!entered ? true : undefined}>
+      <main ref={sceneRoot} className={`site-shell ${activeTrack ? "has-audio" : ""}`} aria-hidden={!entered} inert={!entered ? true : undefined}>
         <HeroScene />
         <ManifestoScene />
         <AlbumScene />
@@ -78,7 +78,7 @@ export function Experience() {
         <FooterScene />
       </main>
 
-      <AudioDock key={activeTrack?.number ?? "empty"} track={activeTrack} onClose={() => setActiveTrack(null)} />
+      <AudioDock track={activeTrack} onClose={() => setActiveTrack(null)} />
       <VideoModal visual={activeVisual} onClose={() => setActiveVisual(null)} />
       <EpkDrawer open={epkOpen} onClose={() => setEpkOpen(false)} />
     </SmoothScrollProvider>

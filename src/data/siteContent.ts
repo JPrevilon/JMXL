@@ -9,6 +9,13 @@ export type SceneKey =
   | "join"
   | "footer";
 
+export type ReleaseState = "preorder" | "direct" | "streaming";
+
+const configuredReleaseState = process.env.NEXT_PUBLIC_RELEASE_STATE;
+const releaseState: ReleaseState = configuredReleaseState === "preorder" || configuredReleaseState === "streaming"
+  ? configuredReleaseState
+  : "direct";
+
 export const siteContent = {
   artist: "JaiMoney XL",
   project: "Young Black Entrepreneur",
@@ -23,6 +30,15 @@ export const siteContent = {
   ],
   albumSummary:
     "A statement on independence, ambition, and building something you can call your own. Young Black Entrepreneur turns the work behind the vision into a soundtrack.",
+  release: {
+    state: releaseState,
+    price: process.env.NEXT_PUBLIC_ALBUM_PRICE ?? "Price at checkout",
+    labels: {
+      preorder: { status: "Preorder", cta: "Preorder the album" },
+      direct: { status: "Direct release", cta: "Own the digital album" },
+      streaming: { status: "Streaming", cta: "Stream the album" },
+    },
+  },
   story:
     "JaiMoney XL is an independent hip-hop artist building at the intersection of music, ownership, and direct connection. Young Black Entrepreneur is the next chapter: a focused body of work made to move with purpose.",
   fanCapture: {

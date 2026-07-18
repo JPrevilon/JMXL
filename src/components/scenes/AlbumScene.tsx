@@ -7,6 +7,7 @@ import { siteContent } from "@/data/siteContent";
 
 export function AlbumScene() {
   const root = useRef<HTMLElement>(null);
+  const release = siteContent.release.labels[siteContent.release.state];
 
   useEffect(() => {
     const section = root.current;
@@ -76,7 +77,7 @@ export function AlbumScene() {
           <div className="album-art">
             <Image src={siteContent.scenes.album.media} alt="Young Black Entrepreneur album artwork" fill sizes="(max-width: 800px) 88vw, 42vw" />
           </div>
-          <span className="album-art__edition">Direct edition</span>
+          <span className="album-art__edition">{release.status}</span>
         </div>
         <div className="album-copy">
           <p className="eyebrow">{siteContent.scenes.album.eyebrow}</p>
@@ -86,10 +87,14 @@ export function AlbumScene() {
             <div><dt>Artist</dt><dd>{siteContent.artist}</dd></div>
             <div><dt>Genre</dt><dd>{siteContent.genre}</dd></div>
             <div><dt>City</dt><dd>{siteContent.city}</dd></div>
-            <div><dt>Status</dt><dd>Direct release</dd></div>
+            <div><dt>Status</dt><dd>{release.status}</dd></div>
           </dl>
+          <div className="album-purchase-callout">
+            <span>Digital album</span>
+            <strong>{siteContent.release.price}</strong>
+          </div>
           <div className="button-row">
-            <a className="button button--primary" href={siteContent.purchaseUrl} target="_blank" rel="noreferrer">Own the digital album</a>
+            <a className="button button--primary" href={siteContent.purchaseUrl} target="_blank" rel="noreferrer">{release.cta}</a>
             <a className="button button--ghost" href="#tracks">Preview the project</a>
           </div>
         </div>
