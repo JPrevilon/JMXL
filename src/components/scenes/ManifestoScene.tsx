@@ -62,6 +62,7 @@ export function ManifestoScene() {
     <section ref={root} id="manifesto" data-scene="manifesto" className="scene manifesto-scene">
       <div className="manifesto-watermark" aria-hidden="true">OWNERSHIP • INDEPENDENCE • LEGACY •</div>
       <div className="scene__inner">
+        <h2 className="sr-only">The Young Black Entrepreneur manifesto</h2>
         <p className="eyebrow">{siteContent.scenes.manifesto.eyebrow}</p>
         <div className="manifesto-copy">
           {siteContent.manifesto.map((line, index) => (

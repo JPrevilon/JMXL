@@ -8,6 +8,7 @@ export function EpkDrawer({ open, onClose }: { open: boolean; onClose: () => voi
   useEffect(() => {
     if (!open) return;
     const previousFocus = document.activeElement as HTMLElement | null;
+    const previousOverflow = document.body.style.overflow;
     const close = (event: KeyboardEvent) => {
       if (event.key === "Escape") onClose();
       if (event.key !== "Tab" || !panel.current) return;
@@ -22,14 +23,14 @@ export function EpkDrawer({ open, onClose }: { open: boolean; onClose: () => voi
     window.addEventListener("keydown", close);
     requestAnimationFrame(() => panel.current?.querySelector<HTMLElement>("button")?.focus());
     return () => {
-      document.body.style.overflow = "";
+      document.body.style.overflow = previousOverflow;
       window.removeEventListener("keydown", close);
       previousFocus?.focus();
     };
   }, [open, onClose]);
 
   return (
-    <aside className={`epk-drawer ${open ? "is-open" : ""}`} aria-hidden={!open} aria-label="Electronic press kit" role="dialog" aria-modal="true">
+    <aside className={`epk-drawer ${open ? "is-open" : ""}`} aria-hidden={!open} aria-label="Electronic press kit" role="dialog" aria-modal="true" inert={!open ? true : undefined}>
       <button type="button" className="epk-drawer__backdrop" onClick={onClose} aria-label="Close EPK" />
       <div ref={panel} className="epk-drawer__panel" tabIndex={-1}>
         <button type="button" className="modal__close" onClick={onClose} aria-label="Close">×</button>

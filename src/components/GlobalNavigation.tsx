@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { siteContent } from "@/data/siteContent";
 
 const links = [
@@ -14,11 +14,18 @@ const links = [
 
 export function GlobalNavigation({ entered, onOpenEpk }: { entered: boolean; onOpenEpk: () => void }) {
   const [open, setOpen] = useState(false);
+  const menuButton = useRef<HTMLButtonElement>(null);
+  const mobileMenu = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!open) return;
-    const close = (event: KeyboardEvent) => event.key === "Escape" && setOpen(false);
+    const close = (event: KeyboardEvent) => {
+      if (event.key !== "Escape") return;
+      setOpen(false);
+      menuButton.current?.focus();
+    };
     window.addEventListener("keydown", close);
+    requestAnimationFrame(() => mobileMenu.current?.querySelector<HTMLElement>("a, button")?.focus());
     return () => window.removeEventListener("keydown", close);
   }, [open]);
 
@@ -36,8 +43,10 @@ export function GlobalNavigation({ entered, onOpenEpk }: { entered: boolean; onO
       <div className="global-nav__actions">
         <a className="nav-buy-link" href={siteContent.purchaseUrl} target="_blank" rel="noreferrer">Buy album</a>
         <button
+          ref={menuButton}
           className="menu-button"
           type="button"
+          aria-label={open ? "Close navigation menu" : "Open navigation menu"}
           aria-expanded={open}
           aria-controls="mobile-menu"
           onClick={() => setOpen((value) => !value)}
@@ -46,7 +55,7 @@ export function GlobalNavigation({ entered, onOpenEpk }: { entered: boolean; onO
           <span />
         </button>
       </div>
-      <div id="mobile-menu" className={`mobile-menu ${open ? "is-open" : ""}`}>
+      <div ref={mobileMenu} id="mobile-menu" className={`mobile-menu ${open ? "is-open" : ""}`} aria-hidden={!open} inert={!open ? true : undefined}>
         {links.map(([label, href]) => (
           <a key={href} href={href} onClick={() => setOpen(false)}>{label}</a>
         ))}

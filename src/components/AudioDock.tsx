@@ -65,6 +65,7 @@ export function AudioDock({ track, onClose }: { track: Track | null; onClose: ()
     <aside
       className={`audio-dock ${track ? "is-open" : ""} ${minimized ? "is-minimized" : ""}`}
       aria-hidden={!track}
+      inert={!track ? true : undefined}
       aria-label="Track preview player"
       onKeyDown={handleKeys}
       tabIndex={track ? 0 : -1}

@@ -10,6 +10,7 @@ export function CustomCursor() {
     if (!node || window.matchMedia("(pointer: coarse)").matches) return;
 
     const move = (event: PointerEvent) => {
+      node.classList.add("is-visible");
       node.style.transform = `translate3d(${event.clientX}px, ${event.clientY}px, 0)`;
     };
     const hover = (event: Event) => {

@@ -57,6 +57,9 @@ export function IntroLoader({ entered, onEnter }: { entered: boolean; onEnter: (
     } else {
       timeline.to(root.current, { autoAlpha: 0, duration: 0.25 });
     }
+    return () => {
+      timeline.kill();
+    };
   }, [entered]);
 
   useEffect(() => {
