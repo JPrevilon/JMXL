@@ -1,0 +1,3 @@
+# Retain source media locally without shipping unoptimized originals to Vercel.
+public/media/incoming/
+
