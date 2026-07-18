@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200">
+    <defs>
+      <radialGradient id="g" cx="72%" cy="20%"><stop stop-color="#d8b56a" stop-opacity=".18"/><stop offset="1" stop-color="#080808" stop-opacity="0"/></radialGradient>
+      <filter id="noise"><feTurbulence baseFrequency=".8" numOctaves="4" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="table" tableValues="0 .08"/></feComponentTransfer></filter>
+    </defs>
+    <rect width="100%" height="100%" fill="#080808"/>
+    <rect width="100%" height="100%" fill="url(#g)"/>
+    <circle cx="864.0" cy="300.0" r="276.0" fill="#d8b56a" opacity=".24"/>
+        <path d="M0 936.0 L744.0 144.0 L1200 600.0 L576.0 1200 Z" fill="#f47721" opacity=".16"/>
+        <rect x="108.0" y="96.0" width="983.9999999999999" height="1008.0" rx="24" fill="none" stroke="#d8b56a" stroke-opacity=".45" stroke-width="3"/>
+    <rect width="100%" height="100%" filter="url(#noise)" opacity=".22"/>
+    <g font-family="Arial, Helvetica, sans-serif" fill="#f7f5ef">
+      <text x="7%" y="82%" font-size="54" font-weight="900" letter-spacing="5">YOUNG BLACK ENTREPRENEUR</text>
+      <text x="7%" y="89%" font-size="20" fill="#d8b56a" letter-spacing="4">FINAL ALBUM COVER GOES HERE</text>
+    </g>
+    </svg>
