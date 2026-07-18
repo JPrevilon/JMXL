@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useRef } from "react";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
 import { siteContent } from "@/data/siteContent";
@@ -24,6 +25,18 @@ export function HeroScene() {
         ease: "none",
         scrollTrigger: { trigger: section, start: "top top", end: "bottom top", scrub: true },
       });
+      gsap.to(".hero-subject", {
+        yPercent: -9,
+        rotate: -1.5,
+        ease: "none",
+        scrollTrigger: { trigger: section, start: "top top", end: "bottom top", scrub: true },
+      });
+      gsap.to('[data-stage-scene="hero"] .fixed-media-stage__video', {
+        yPercent: 5,
+        scale: 1.07,
+        ease: "none",
+        scrollTrigger: { trigger: section, start: "top top", end: "bottom top", scrub: true },
+      });
       gsap.to(".hero-orbit", {
         rotate: 110,
         scale: 1.18,
@@ -41,6 +54,9 @@ export function HeroScene() {
   return (
     <section ref={root} id="top" data-scene="hero" className="scene hero-scene">
       <div className="hero-orbit" aria-hidden="true" />
+      <div className="hero-subject" aria-hidden="true">
+        <Image src="/media/images/story-portrait-01.webp" alt="" fill priority sizes="(max-width: 700px) 62vw, 34vw" />
+      </div>
       <div className="scene__inner hero-scene__inner">
         <p className="eyebrow">{siteContent.scenes.hero.eyebrow}</p>
         <h1 className="hero-title" aria-label={siteContent.project}>

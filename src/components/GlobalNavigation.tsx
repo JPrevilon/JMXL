@@ -24,7 +24,7 @@ export function GlobalNavigation({ entered, onOpenEpk }: { entered: boolean; onO
 
   return (
     <header className={`global-nav ${entered ? "is-visible" : ""}`} aria-hidden={!entered} inert={!entered ? true : undefined}>
-      <a href="#top" className="global-nav__brand" aria-label="Back to top">
+      <a href="#top" className="global-nav__brand" aria-label="Back to top" data-nav-brand>
         <Image src="/brand/logo-white-transparent.png" alt="" width={54} height={54} />
       </a>
       <nav className="global-nav__links" aria-label="Primary navigation">

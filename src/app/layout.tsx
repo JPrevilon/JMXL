@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     title: "JaiMoney XL — Young Black Entrepreneur",
     description: "The album. The mindset. The movement.",
     type: "website",
-    images: ["/media/images/hero-poster.svg"],
+    images: ["/media/images/hero-poster.webp"],
   },
   icons: {
     icon: "/brand/favicon.png",
